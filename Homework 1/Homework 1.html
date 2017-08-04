@@ -17,6 +17,10 @@
         return this.htmlCode;
     };
 
+    Container.prototype.remove = function()
+    {
+        delete this.Container;
+    };
     function Menu(my_id, my_class, my_items){
         Container.call(this);
         this.id = my_id;
