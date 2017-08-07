@@ -32,9 +32,9 @@ Menu.prototype.render = function() {
 
 
     var result = '<ul class="' + this.className + '">';
-    for (var item in this.items) {
-        if (this.items[item] instanceof MenuItem) {
-            result += this.items[item].render();
+    for (var item in this.itemsMenu) {
+        if (this.itemsMenu[item] instanceof MenuItem) {
+            result += this.itemsMenu[item].render();
         }
     }
     result += "</ul>";
@@ -59,29 +59,30 @@ return result;
 }
 
 
+//подподменю
+var subsubmenuItem1 = new MenuItem("submenu-item", "/catalogue/access/case.html", "Чехлы");
+var subsubmenuItem2 = new MenuItem("submenu-item", "/catalogue/access/glass.html", "Защитные стекла");
+var subsubmenuItem3 = new MenuItem("submenu-item", "/catalogue/access/flash.html", "Карты памяти");
+var subsubmenu1 = new Menu("submenu", {0: subsubmenuItem1, 1: subsubmenuItem2, 2: subsubmenuItem3});
 
+
+
+//подменю
+var submenuItem1 = new MenuItem("submenu-item", "/catalogue/phone.html", "Сотовые телефоны");
+var submenuItem2 = new MenuItem("submenu-item", "/catalogue/tablet.html", "Планшеты");
+var submenuItem3 = new MenuItem("submenu-item", "/catalogue/access.html", "Аксессуары", subsubmenu1);
+var submenu1 = new Menu("submenu", {0: submenuItem1, 1: submenuItem2, 2: submenuItem3});
 
 //Меню
-var m_item1 = new MenuItem( "menu-item","/", "Главная");
-var m_item2 = new MenuItem("menu-item","/catalogue/", "Каталог", subm_1);
-var m_item3 = new MenuItem("menu-item","/gallery/", "Галерея");
-var m_item4 = new MenuItem("menu-item","/sale/", "Акции");
-var menu =new Menu("menu",{0: m_item1, 1: m_item2, 2: m_item3, 3: m_item4});
-//подменю
-var subm_item1 = new MenuItem("subm_item", "/catalogue/phone.html", "Сотовые телефоны");
-var subm_item2 = new MenuItem("subm_item", "/catalogue/tablet.html", "Планшеты");
-var subm_item3 = new MenuItem("subm_item", "/catalogue/access.html", "Аксессуары", subsubm_1);
-var subm_1 = new Menu("submenu", {0: subm_item1, 1: subm_item2, 2: subm_item3});
-
-var subsubm_item1 = new MenuItem("subm_item", "/catalogue/access/case.html", "Чехлы");
-var subsubm_item2 = new MenuItem("subm_item", "/catalogue/access/glass.html", "Защитные стекла");
-var subsubm_item3 = new MenuItem("subm_item", "/catalogue/access/flash.html", "Карты памяти");
-var subsubm_1 = new Menu("submenu", {0: subsubm_item1, 1: subsubm_item2, 2: subsubm_item3});
-
+var menuItem1 = new MenuItem("menu-item","/catalogue", "Каталог", submenu1);
+var menuItem2 = new MenuItem("menu-item","/gallery", "Галерея");
+var menuItem3 = new MenuItem("menu-item","/sale", "Акции");
+var menuItem4 = new MenuItem('menu-item', "/cabinet", 'Личный кабинет');
+var menu =new Menu("menu",{0: menuItem1, 1: menuItem2, 2: menuItem3, 3: menuItem4});
 var createMenu = menu.render();
 
 document.write(createMenu);
 
 
-m_item4.remove();
+menuItem4.remove();
 
